@@ -2,6 +2,7 @@ package ru.netology.domain;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.netology.domain.RadioService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +28,7 @@ public class RadioServiceTest {
     }
 
     @Test
-    void setUpCurrentVolume() {
+    void setUpCurrentVolume1() {
         radio.setCurrentVolume(12);
         radio.setUpCurrentVolume();
         int expected = 13;
@@ -38,7 +39,7 @@ public class RadioServiceTest {
     void setUpCurrentVolumeWhenMax() {
         radio.setCurrentVolume(100);
         radio.setUpCurrentVolume();
-        int expected = 100;
+        int expected = 1;
         assertEquals(expected, radio.getCurrentVolume());
     }
 
@@ -147,10 +148,4 @@ public class RadioServiceTest {
         assertEquals(expected, radio.getCurrentStation());
     }
 
-    @Test
-    void setUnderMinVolume() {
-        radio.setCurrentVolume(-3);
-        int expected = 0;
-        assertEquals(expected, radio.getCurrentVolume());
-    }
 }
