@@ -10,7 +10,7 @@ public class RadioServiceTest {
 
     @BeforeEach
     public void radio() {
-        this.radio = new RadioService(0,9,0,100);
+        this.radio = new RadioService(0,10,0,100);
     }
 
     @Test
@@ -77,9 +77,9 @@ public class RadioServiceTest {
 
     @Test
     void setFirstStationWhenLast() {
-        radio.setCurrentStation(9);
+        radio.setCurrentStation(10);
         radio.setUpCurrentStation();
-        int expected = 0;
+        int expected = 1;
         assertEquals(expected, radio.getCurrentStation());
     }
 
@@ -88,15 +88,15 @@ public class RadioServiceTest {
         RadioService radio2 = new RadioService(20);
         radio2.setCurrentStation(19);
         radio2.setUpCurrentStation();
-        int expected = 0;
+        int expected = 1;
         assertEquals(expected, radio2.getCurrentStation());
     }
 
     @Test
     void setDownCurrentStation() {
-        radio.setCurrentStation(2);
+        radio.setCurrentStation(1);
         radio.setDownCurrentStation();
-        int expected = 1;
+        int expected =0;
         assertEquals(expected, radio.getCurrentStation());
     }
 
@@ -113,7 +113,7 @@ public class RadioServiceTest {
     void setLastStationWhenFirst() {
         radio.setCurrentStation(0);
         radio.setDownCurrentStation();
-        int expected = 9;
+        int expected =9;
         assertEquals(expected, radio.getCurrentStation());
     }
 
@@ -122,7 +122,7 @@ public class RadioServiceTest {
         RadioService radio2 = new RadioService(20);
         radio2.setCurrentStation(0);
         radio2.setDownCurrentStation();
-        int expected = 19;
+        int expected = 18;
         assertEquals(expected, radio2.getCurrentStation());
     }
 

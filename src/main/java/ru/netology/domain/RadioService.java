@@ -1,8 +1,6 @@
 package ru.netology.domain;
 
-
 public class RadioService {
-
 
     private int minStation;
     private int maxStation;
@@ -40,10 +38,10 @@ public class RadioService {
 
 
     public void setCurrentVolume(int currentVolume) {
-        if (currentVolume > maxVolume) {
+        if ( currentVolume > maxVolume ) {
             return;
         }
-        if (currentVolume < minVolume) {
+        if ( currentVolume < minVolume ) {
             return;
         }
         this.currentVolume = currentVolume;
@@ -51,7 +49,7 @@ public class RadioService {
 
 
     public void setUpCurrentVolume() {
-        if (currentVolume >= maxVolume) {
+        if ( currentVolume == maxVolume ) {
             return;
         }
         this.currentVolume++;
@@ -59,7 +57,7 @@ public class RadioService {
 
 
     public void setDownCurrentVolume() {
-        if (currentVolume <= minVolume) {
+        if ( currentVolume == minVolume ) {
             return;
         }
         this.currentVolume--;
@@ -71,35 +69,28 @@ public class RadioService {
     }
 
     public void setCurrentStation(int currentStation) {
-        if (currentStation <= minStation) {
+        if ( currentStation <= minStation ) {
             return;
         }
-        if (currentStation >= maxStation) {
+        if ( currentStation >= maxStation ) {
             return;
         }
         this.currentStation = currentStation;
     }
 
     public void setUpCurrentStation() {
-        if (currentStation >= maxStation) {
-            return;
-        }
-        if (currentStation == minStation) {
+        if ( currentStation == maxStation ) {
+            this.currentStation = minStation;
             return;
         }
         this.currentStation++;
     }
 
     public void setDownCurrentStation() {
-        if (currentStation <= minStation) {
+        if ( currentStation == minStation ) {
             this.currentStation = maxStation;
-            return;
-        }
-        if (currentStation == maxStation) {
-            return;
         }
         this.currentStation--;
     }
-
 
 }
