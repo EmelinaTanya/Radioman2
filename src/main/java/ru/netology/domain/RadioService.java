@@ -1,62 +1,86 @@
 package ru.netology.domain;
 
-import java.io.InputStream;
-import java.util.Scanner;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@Data
+@NoArgsConstructor
 
 public class RadioService {
-    private int minStation = 0;
-    private int maxStation = 9;
+
+    private int minStation;
+    private int maxStation;
     private int currentVolume;
     private int currentStation;
-    private int minVolume = 0;
-    private int maxVolume = 10;
+    private int minVolume;
+    private int maxVolume;
+    private int countStation;
 
+    public RadioService(int countStation) {
+        this.maxStation = countStation - 1;
+    }
 
-    public int getCurrentVolume() {
-        return currentVolume;
+    public RadioService(int minStation, int maxStation, int minVolume, int maxVolume) {
+        this.minStation = minStation;
+        this.maxStation = maxStation;
+        this.minVolume = minVolume;
+        this.maxVolume = maxVolume;
     }
 
     public void setCurrentVolume(int currentVolume) {
+        if (currentVolume >= maxVolume) {
+//            this.currentVolume = maxVolume;
+            return;
+        }
+        if (currentVolume <= minVolume) {
+//            this.currentVolume = minVolume;
+            return;
+        }
         this.currentVolume = currentVolume;
     }
 
     public void setUpCurrentVolume() {
-        if ( currentVolume == maxVolume ) {
+        if (currentVolume == maxVolume) {
             return;
         }
         this.currentVolume++;
     }
 
-
     public void setDownCurrentVolume() {
-        if ( currentVolume == minVolume ) {
+        if (currentVolume == minVolume) {
             return;
         }
         this.currentVolume--;
     }
 
-
-    public int getCurrentStation() {
-        return currentStation;
-    }
-
     public void setCurrentStation(int currentStation) {
+        if (currentStation < minStation) {
+            return;
+        }
+        if (currentStation > maxStation) {
+            return;
+        }
         this.currentStation = currentStation;
 
     }
 
     public void setUpCurrentStation() {
-        if ( currentStation == maxStation ) {
+        if (currentStation == maxStation) {
             this.currentStation = minStation;
+            return;
         }
-        this.currentStation++;
+        currentStation++;
     }
 
     public void setDownCurrentStation() {
-        if ( currentStation == minStation ) {
+        if (currentStation == minStation) {
             this.currentStation = maxStation;
+            return;
         }
-        this.currentStation--;
+        currentStation--;
     }
-
 }
+
